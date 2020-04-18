@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './App.scss';
 import CountriesTable from './CountriesTable/CountriesTable'
 import API_DATA from '../mocks/API_DATA.json';
@@ -28,10 +29,12 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.setState({
-      FETCHED_DATA: API_DATA,
-      countries: API_DATA.Countries,
-      global: API_DATA.Global
+    axios.get('https://api.covid19api.com/summary').then( response => {
+      this.setState({
+        FETCHED_DATA: response.data,
+        countries: response.data.Countries,
+        global: response.data.Global
+      })
     })
   }
 
