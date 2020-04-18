@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import CountriesTable from './CountriesTable/CountriesTable'
 import API_DATA from '../mocks/API_DATA.json';
+import Summary from './Summary/Summary';
 
 
 class App extends React.Component {
@@ -33,6 +34,9 @@ class App extends React.Component {
           #STAYHOME
         </header>
         <div className="content">
+          <Summary
+            global={this.state.global}
+          />
           <CountriesTable
             countries={this.state.countries}
           />
