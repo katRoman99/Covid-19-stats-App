@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Summary.scss'
 
-export default ({global}) => {
+export default ({global, filterTiles}) => {
 
     const NewConfirmed = global.NewConfirmed;
     const TotalConfirmed = global.TotalConfirmed;
@@ -16,7 +16,7 @@ export default ({global}) => {
             <div className="sticky">
                 <span className="infoHeader">Global statistics</span>
                 <div className="search">
-                    <input type="text" name="" placeholder="search country..."/>
+                    <input onChange={filterTiles} type="text" name="" placeholder="search country..."/>
                 </div>
                 <div className="infoNumber">
                     <span>NewConfirmed</span>

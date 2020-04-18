@@ -17,6 +17,14 @@ class App extends React.Component {
       countries: [],
       global: {}
     };
+    this.filterTiles = this.filterTiles.bind(this);
+  }
+
+  filterTiles(e) {
+    const filteredCountries = this.state.FETCHED_DATA.Countries.filter(country => country.Country.toLowerCase().includes(e.target.value.toLowerCase()));
+    this.setState({
+      countries: filteredCountries
+    })
   }
 
   componentDidMount(){
@@ -36,6 +44,7 @@ class App extends React.Component {
         <div className="content">
           <Summary
             global={this.state.global}
+            filterTiles={this.filterTiles}
           />
           <CountriesTable
             countries={this.state.countries}
