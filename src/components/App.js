@@ -2,7 +2,6 @@ import React from 'react';
 import axios from 'axios';
 import './App.scss';
 import CountriesTable from './CountriesTable/CountriesTable'
-import API_DATA from '../mocks/API_DATA.json';
 import Summary from './Summary/Summary';
 
 
