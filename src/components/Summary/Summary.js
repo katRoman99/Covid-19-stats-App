@@ -13,8 +13,11 @@ export default ({global}) => {
 
     return (
         <div className="summary">
-            <span className="infoHeader">Global statistics</span>
             <div className="sticky">
+                <span className="infoHeader">Global statistics</span>
+                <div className="search">
+                    <input type="text" name="" placeholder="search country..."/>
+                </div>
                 <div className="infoNumber">
                     <span>NewConfirmed</span>
                     <span className="globalNumber">{NewConfirmed}</span>

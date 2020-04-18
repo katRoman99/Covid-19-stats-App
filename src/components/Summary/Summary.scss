@@ -2,19 +2,39 @@
     width: 20%;
     padding-top: 4em;
 
-    .infoHeader {
-        font-size: 2em;
-        bottom: 3em;
-    }
-
     .sticky {
         position: sticky;
-        top: 10em;
-        padding-top: 2em;
+        top: 2em;
     }
 
+    .infoHeader {
+        font-weight: 400;
+        font-size: 2em;
+    }
+
+    input {
+        margin-top: 0em;
+        margin-bottom: 2em;
+        border: 2px solid beige;
+        border-radius: 10px;
+        height: 30px;
+        width: 200px;
+        outline: none;
+        font-size: 24px;
+        padding-left: 1em;
+        color: grey;
+    }
+
+    ::placeholder {
+        color: lightgrey;
+    }
+
+    input[type=text]:focus {
+        background-color: whitesmoke;
+      }
+
     .infoNumber {
-        padding: 0.2em;
+        padding-top: 0.95em;
 
         .globalNumber {
             font-size: 2em;
