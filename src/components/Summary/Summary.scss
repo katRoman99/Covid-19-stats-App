@@ -14,8 +14,7 @@
     .infoHeader {
         font-family: $primary_font;
         font-weight: 400;
-        font-size: 2em;
-        
+        font-size: 2em;        
     }
 
     @keyframes mymove {
@@ -35,14 +34,14 @@
         text-align: center;
         color: grey;
 
-        &placeholder {
+        &::placeholder{
             color: lightgrey;
         }
     }
 
     input[type=text]:focus {
         background-color: whitesmoke;
-      }
+    }
 
     .infoNumber {
         margin-top: auto;
