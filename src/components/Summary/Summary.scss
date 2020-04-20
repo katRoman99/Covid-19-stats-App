@@ -1,6 +1,11 @@
+$primary_1: beige;
+$primary_font: "Trebuchet MS";
+
 .summary {
     width: 20%;
     padding-top: 4em;
+    animation: mymove 5s infinite;
+
 
     .sticky {
         position: sticky;
@@ -8,25 +13,32 @@
     }
 
     .infoHeader {
+        font-family: $primary_font;
         font-weight: 400;
         font-size: 2em;
+        
+    }
+
+    @keyframes mymove {
+        from {background-color: #f9f1d0;}
+        to {background-color: #e1c4cb;}
     }
 
     input {
-        margin-top: 0em;
+        margin-top: 0.5em;
         margin-bottom: 2em;
-        border: 2px solid beige;
+        border: 2px solid $primary_1;
         border-radius: 10px;
         height: 30px;
-        width: 200px;
+        width: 220px;
         outline: none;
         font-size: 24px;
-        padding-left: 1em;
+        text-align: center;
         color: grey;
-    }
 
-    ::placeholder {
-        color: lightgrey;
+        &placeholder {
+            color: lightgrey;
+        }
     }
 
     input[type=text]:focus {
@@ -34,11 +46,12 @@
       }
 
     .infoNumber {
-        padding-top: 0.95em;
+        margin-top: auto;
+        padding-top: 0.75em;
 
         .globalNumber {
             font-size: 2em;
-            color: red;
+            color: #54868d;
             font-weight: bold;
             display: flex;
             flex-direction: column;
