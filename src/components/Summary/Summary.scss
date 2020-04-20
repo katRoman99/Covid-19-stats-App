@@ -1,5 +1,4 @@
-$primary_1: beige;
-$primary_font: "Trebuchet MS";
+@import '../master';
 
 .summary {
     width: 20%;
@@ -27,7 +26,7 @@ $primary_font: "Trebuchet MS";
     input {
         margin-top: 0.5em;
         margin-bottom: 2em;
-        border: 2px solid $primary_1;
+        border: 2px solid $border_color;
         border-radius: 10px;
         height: 30px;
         width: 220px;
@@ -50,9 +49,9 @@ $primary_font: "Trebuchet MS";
         padding-top: 0.75em;
 
         .globalNumber {
-            font-size: 2em;
-            color: #54868d;
+            @extend .infoHeader;
             font-weight: bold;
+            color: #54868d;
             display: flex;
             flex-direction: column;
         }

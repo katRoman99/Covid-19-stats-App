@@ -1,6 +1,8 @@
+ @import '../master';
+ 
  .countryTileHeader {
     display: flex;
-    border-bottom: 3px solid beige;
+    border-bottom: 3px solid $border_color;
     position: sticky;
     background-color: white;
     top: 0em;
@@ -8,6 +10,7 @@
     padding-top: 2em;
 
     .headerTile {
+        font-family: $primary_font;
         font-weight: 400;
         width: 100%;
         justify-content: space-around;
