@@ -39,14 +39,14 @@ class App extends React.Component {
 
   sortCountries() {
     var sortedCountries;
-    if (this.state.countriesSorted)
-      sortedCountries = this.state.FETCHED_DATA.Countries;
-    else
+    if (this.state.countriesSorted === false)
       sortedCountries = this.sortAlphAsc(this.state.FETCHED_DATA.Countries);
+    else
+      sortedCountries = this.state.FETCHED_DATA.Countries;
     
     this.setState({
       countries: sortedCountries,
-      countriesSorted: !this.state.countriesSorted
+      countriesSorted: true
     })
   }
 
