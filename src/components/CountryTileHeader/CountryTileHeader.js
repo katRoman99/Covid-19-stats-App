@@ -2,12 +2,12 @@ import React from 'react';
 
 import './CountryTileHeader.scss';
 
-export default () => {
+export default ({sortCountries, sortTotalConfirmed}) => {
 
     return (
         <div className="countryTileHeader">
-                <div className="headerTile">Country</div>
-                <div className="headerTile">Total confirmed</div>
+                <div onClick={sortCountries} className="headerTile">Country</div>
+                <div onClick={sortTotalConfirmed} className="headerTile">Total confirmed</div>
                 <div className="headerTile">Total deaths</div>
                 <div className="headerTile">Total recovered</div>
         </div>
