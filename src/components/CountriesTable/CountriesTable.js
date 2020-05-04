@@ -3,12 +3,14 @@ import CountryTile from '../CountryTile/CountryTile'
 import './CountriesTable.scss'
 import CountryTileHeader from '../CountryTileHeader/CountryTileHeader';
 
-export default ({countries, sortCountries, sortTotalConfirmed}) => {
+export default ({countries, sortCountries, sortTotalConfirmed, sortTotalDeaths, sortTotalRecovered}) => {
     return (
         <div className="countriesTable">
             <CountryTileHeader
                 sortCountries={sortCountries}
                 sortTotalConfirmed={sortTotalConfirmed}
+                sortTotalDeaths={sortTotalDeaths}
+                sortTotalRecovered={sortTotalRecovered}
             />
             {countries.map( country =>
                 <CountryTile

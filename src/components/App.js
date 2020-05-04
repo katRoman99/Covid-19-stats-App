@@ -24,36 +24,38 @@ class App extends React.Component {
     this.filterTiles = this.filterTiles.bind(this);
     this.sortCountries = this.sortCountries.bind(this);
     this.sortTotalConfirmed= this.sortTotalConfirmed.bind(this);
+    this.sortTotalDeaths= this.sortTotalDeaths.bind(this);
+    this.sortTotalRecovered= this.sortTotalRecovered.bind(this);
   }
 
   filterTiles(e) {
     const filteredCountries = this.state.FETCHED_DATA.Countries.filter(country => country.Country.toLowerCase().includes(e.target.value.toLowerCase()));
     this.setState({
-      countries: filteredCountries,
-      countriesSorted: false,
-      totalConfirmedSorted: false,
-      totalDeathsSorted: false,
-      totalRecoveredSorted: false
+      countries: filteredCountries
     })
   }
 
   sortCountries() {
     var sortedCountries;
     if (this.state.countriesSorted === false)
-      sortedCountries = this.sortAlphAsc(this.state.FETCHED_DATA.Countries);
+      sortedCountries = this.sortAlph(this.state.FETCHED_DATA.Countries, 1);
     else
-      sortedCountries = this.state.FETCHED_DATA.Countries;
+      sortedCountries = this.sortAlph(this.state.FETCHED_DATA.Countries, 0);
     
     this.setState({
       countries: sortedCountries,
-      countriesSorted: true
+      totalConfirmedSorted: false,
+      totalDeathsSorted: false,
+      totalRecoveredSorted: false,
+      countriesSorted: !this.state.countriesSorted
     })
   }
 
-  sortAlphAsc(arr) {
+  sortAlph(arr, asc) {
     var countries = arr;
 
     var n = countries.length
+    var temp;
   
     // Traverse through all array elements 
     for ( var i=0; i< n-1; i++) {
@@ -63,21 +65,31 @@ class App extends React.Component {
   
             // traverse the array from 0 to n-i-1 
             // Swap if the element found is greater 
-            // than the next element 
-            if (countries[j].Country.toLowerCase() > countries[j+1].Country.toLowerCase()) {
-              var temp = countries[j];
-              countries[j] = countries[j+1];
-              countries[j+1] = temp;
+            // than the next element
+            if(asc === 1) {
+              if (countries[j].Country.toLowerCase() > countries[j+1].Country.toLowerCase()) {
+                temp = countries[j];
+                countries[j] = countries[j+1];
+                countries[j+1] = temp;
+              }
+            }
+            else if(asc === 0) {
+              if (countries[j].Country.toLowerCase() < countries[j+1].Country.toLowerCase()) {
+                temp = countries[j+1];
+                countries[j+1] = countries[j];
+                countries[j] = temp;
+              }
             }
         }
       }
       return countries;
   }
 
-  sortAsc(arr) {
+  sort(arr, asc, dataToSort) {
     var countries = arr;
 
-    var n = countries.length
+    var n = countries.length;
+    var temp;
   
     // Traverse through all array elements 
     for ( var i=0; i< n-1; i++) {
@@ -87,22 +99,68 @@ class App extends React.Component {
   
             // traverse the array from 0 to n-i-1 
             // Swap if the element found is greater 
-            // than the next element 
-            if (countries[j].TotalConfirmed > countries[j+1].TotalConfirmed) {
-              var temp = countries[j];
-              countries[j] = countries[j+1];
-              countries[j+1] = temp;
+            // than the next element
+            if(asc===1) {
+              if (countries[j][dataToSort] > countries[j+1][dataToSort]) {
+                temp = countries[j];
+                countries[j] = countries[j+1];
+                countries[j+1] = temp;
+              }
+            }
+            else if(asc===0) {
+              if (countries[j][dataToSort] < countries[j+1][dataToSort]) {
+                temp = countries[j+1];
+                countries[j+1] = countries[j];
+                countries[j] = temp;
+              }
             }
         }
-      }
-      return countries;
+    }
+    return countries;
   }
 
   sortTotalConfirmed() {
-    const sortedCountries = this.sortAsc(this.state.FETCHED_DATA.Countries); 
+    var sortedCountries;
+    if (this.state.totalConfirmedSorted === false)
+      sortedCountries = this.sort(this.state.FETCHED_DATA.Countries, 1, "TotalConfirmed");
+    else
+      sortedCountries = this.sort(this.state.FETCHED_DATA.Countries, 0, "TotalConfirmed");
     this.setState({
       countries: sortedCountries,
-      countriesSorted: false
+      countriesSorted: false,
+      totalDeathsSorted: false,
+      sortTotalRecovered: false,
+      totalConfirmedSorted: !this.state.totalConfirmedSorted
+    })
+  }
+
+  sortTotalDeaths() {
+    var sortedCountries;
+    if (this.state.totalDeathsSorted === false)
+      sortedCountries = this.sort(this.state.FETCHED_DATA.Countries, 1, "TotalDeaths");
+    else
+      sortedCountries = this.sort(this.state.FETCHED_DATA.Countries, 0, "TotalDeaths");
+    this.setState({
+      countries: sortedCountries,
+      countriesSorted: false,
+      totalConfirmedSorted: false,
+      totalRecoveredSorted: false,
+      totalDeathsSorted: !this.state.totalDeathsSorted
+    })
+  }
+
+  sortTotalRecovered() {
+    var sortedCountries;
+    if (this.state.totalRecoveredSorted === false)
+      sortedCountries = this.sort(this.state.FETCHED_DATA.Countries, 1, "TotalRecovered");
+    else
+      sortedCountries = this.sort(this.state.FETCHED_DATA.Countries, 0, "TotalRecovered");
+    this.setState({
+      countries: sortedCountries,
+      countriesSorted: false,
+      totalConfirmedSorted: false,
+      totalDeathsSorted: false,
+      totalRecoveredSorted: !this.state.totalRecoveredSorted
     })
   }
 
@@ -131,6 +189,8 @@ class App extends React.Component {
             countries={this.state.countries}
             sortCountries={this.sortCountries}
             sortTotalConfirmed={this.sortTotalConfirmed}
+            sortTotalDeaths={this.sortTotalDeaths}
+            sortTotalRecovered={this.sortTotalRecovered}
           />
         </div>        
       </div>
